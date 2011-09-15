@@ -74,6 +74,7 @@ The following mods have been made to bring the devices into "line" with the
 spec above.
 
 Safari:
+
 * Early iOS devices have no gyro - as such any call to deviceOrientation will return
 the right object but with data as null.
 * I think Safari provides the wrong values:
