@@ -1,0 +1,11 @@
+version 0.2 (15 September, 2011)
+--------------------------------
+
+- Unwrapping of code from demos created for WDYK
+- Little bit of cleanup
+- Created specific repo for just this code with stand alone examples not relying on django or websockets
+
+Version 0.1 (22 August, 2011)
+------------------------------
+
+- really messy implementation used for Melbourne WDYK night for web directions
