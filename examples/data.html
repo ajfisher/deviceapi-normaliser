@@ -1,3 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
 
-TODO:
-This doc will contain a demo showing the orientation and acceleration of the phone.
+    <meta charset="utf-8">
+    <title>Raw phone data</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="../deviceapi-normaliser.js"></script>
+
+    <script type="text/javascript">
+		window.addEventListener("deviceorientation", update_gyro, false);
+
+        window.addEventListener("devicemotion", update_accel, false);
+
+		function update_gyro(e) {
+			// gets the gyro position
+			var tilt = deviceOrientation(e);
+		
+            $("#xval").html(tilt.gamma);
+            $("#yval").html(tilt.beta);
+            $("#zval").html(tilt.alpha);
+        }
+        
+        function update_accel(e) {
+        	// gets the accelerometer values
+        	var a = deviceMotion(e);
+            $("#xaccel").html(a.accelerationIncludingGravity.x);
+            $("#yaccel").html(a.accelerationIncludingGravity.y);
+            $("#zaccel").html(a.accelerationIncludingGravity.z);
+        }  
+    </script>
+</head>
+<body>
+    <div id="main">
+    <h1>Device data</h1>    
+        <h2>Accelerometer Including Gravity</h2>
+        <p>X: <span id="xaccel"></span></p>
+        <p>Y: <span id="yaccel"></span></p>
+        <p>Z: <span id="zaccel"></span></p>
+        <h2>Gyro (Tilt)</h2>
+        <p>Gamma: <span id="xval"></span></p>
+        <p>Beta: <span id="yval"></span></p>
+        <p>Alpha (compass): <span id="zval"></span></p>
+    </div>
+</body>

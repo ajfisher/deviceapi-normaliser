@@ -60,11 +60,9 @@ function my_motion_change_handler(e) {
 Known Issues
 =============
 
-* iOS devices prior to the iPhone 4 do not have a gyro and as a result don't
-provide that data back.
+* iOS devices prior to the iPhone 4 do not have a gyro and as a result don't provide that data back.
 * Mobile chrome does not support any of these events so is unsupported.
-* rotation rate presently not implemented given lack of visibility on this
-method from the browsers
+* rotation rate presently not implemented given lack of visibility on this method from the browsers
 
 
 Behavioural changes from default
@@ -75,8 +73,7 @@ spec above.
 
 Safari:
 
-* Early iOS devices have no gyro - as such any call to deviceOrientation will return
-the right object but with data as null.
+* Early iOS devices have no gyro - as such any call to deviceOrientation will return the right object but with data as null.
 * I think Safari provides the wrong values:
     * Alpha is as a val [-180, 180] (should be [0-360])
     * Gamma [-180, 180] (should be [-90, 90])
@@ -94,6 +91,6 @@ Roadmap
 * Include the rotation information
 * Get tests done for iOS devices which I don't presently have access to.
 * Try out a honeycomb device to see if Mobile Chrome supports the API
-* Write handler to detect whether eventlisteners should be bound or not.
+* Write handler to detect whether eventlisteners should be bound or not based on capabilities.
 
 
