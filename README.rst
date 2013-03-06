@@ -10,10 +10,12 @@ and devicemotion events. It returns objects that you can query as per the
 spec at the W3C with as much consistency as possible provided. Currently
 as per this document: http://dev.w3.org/geo/api/spec-source-orientation
 
-Presently the only devices that reliably use the device api events are 
-mobile safari on iOS4+ and Firefox 6 (Fennec) on Android.
+Most devices now support at least part of the spec with motion being the most
+weakly supported in terms of the values being exposed but orientation being
+most wacky due to varying implementations.
 
-Mobile chrome does not currently support the devicemotion api.
+The aim of this library is to attempt to normalise the way the different vendors
+are implementing the API and make it consistent across browsers.
 
 This library is licenced under a BSD style licence as per to the licence document included in the repo.
 
@@ -39,24 +41,24 @@ You will need to call it with the event object passed into the handler.
 
 Eg:
 
-function my_orientation_change_handler(e) {
-    var obj = deviceOrientation(e);
+    function my_orientation_change_handler(e) {
+        var obj = deviceOrientation(e);
 
-    // returns
-    obj.gamma
-    obj.alpha
-    obj.beta
-}
+        // returns
+        obj.gamma
+        obj.alpha
+        obj.beta
+    }
 
-function my_motion_change_handler(e) {
-    var obj = deviceMotion(e);
-    
-    // returns
-    obj.accelerationIncludingGravity.x
-    obj.accelerationIncludingGravity.y
-    obj.accelerationIncludingGravity.z        
+    function my_motion_change_handler(e) {
+        var obj = deviceMotion(e);
+        
+        // returns
+        obj.accelerationIncludingGravity.x
+        obj.accelerationIncludingGravity.y
+        obj.accelerationIncludingGravity.z        
 
-}
+    }
 
 Known Issues
 =============
