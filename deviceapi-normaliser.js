@@ -22,15 +22,35 @@ function deviceMotion(e) {
 	// we need to normalise the values, safari will just return
 	// as they are but ff will multiply by gravity.
     this.accelerationIncludingGravity = new Object();
-    this.accelerationIncludingGravity.x = e.accelerationIncludingGravity.x * accel_multi;
-    this.accelerationIncludingGravity.y = e.accelerationIncludingGravity.y * accel_multi;
-    this.accelerationIncludingGravity.z = e.accelerationIncludingGravity.z * accel_multi;
+    this.accelerationIncludingGravity.x = e.accelerationIncludingGravity.x;
+    this.accelerationIncludingGravity.y = e.accelerationIncludingGravity.y;
+    this.accelerationIncludingGravity.z = e.accelerationIncludingGravity.z;
     
     this.acceleration = new Object();
-    this.acceleration.x = null;
-    this.acceleration.y = null;
-    this.acceleration.z = null;
+    if (e.acceleration !== null) {
+        this.acceleration.x = e.acceleration.x;
+        this.acceleration.y = e.acceleration.y;
+        this.acceleration.z = e.acceleration.z;
+    } else {
+        this.acceleration.x = null;
+        this.acceleration.y = null;
+        this.acceleration.z = null;
+    }
     
+    this.rotationRate = new Object();
+    if (e.rotationRate !== null) {
+        this.rotationRate.alpha = e.rotationRate.alpha;
+        this.rotationRate.beta = e.rotationRate.beta;
+        this.rotationRate.gamma = e.rotationRate.gamma;
+    } else {
+        this.rotationRate.alpha = null;
+        this.rotationRate.beta = null;
+        this.rotationRate.gamma = null;
+    }
+
+    this.interval = null;
+    if (e.interval !== null) { this.interval = e.interval; }
+
     return (this);
 }
 
@@ -45,7 +65,10 @@ function deviceOrientation(e) {
 	this.gamma = e.gamma;
 	this.beta = e.beta;
 	this.alpha = e.alpha; // compass
-	
+
+    this.absolute = false;
+    if (e.absolute !== null) { this.absolute = e.absolute; }
+
 	return(this);
 	
 }

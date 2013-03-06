@@ -81,6 +81,47 @@ iPhone / iPad
 * Mobile Safari  - iOS4+ Motion and Orientation
 
 
+Current Tests of Spec compliance
+=================================
+
+Device Orientation
+------------------
+
+The specs suggest the following:
+
+X is in the plane of the ground and is positive to the East (-ive to West)
+Y is in the plane of the ground and is positive to the North (-ive to South)
+Z is perpendicular to the ground plane and is positive towards the sky (negative into the earth)
+
+Rotation should be expressed using the right hand rule, thus positive values with rotation clockwise around the axis of rotation when looking down the axis.
+
+Direction faced to get a 0 position
+
+                Alpha (compass) 
+Should be:      
+iOS Chome:      East (90)
+iOS Safari:     East (90)
+Android Chrome: North (0)
+Android:        West (270)
+Android FF:     North (0)
+
+Range of values that can be expressed
+
+
+Device Motion
+-------------
+
+Support for motion properties:
+
+                Acc     AccIG   Rot     Interval
+iOS Chome:      N       Y       N       N
+iOS Safari:     Y       Y       Y       Y
+Android Chrome: N       N       N       N
+Android:        N       Y       N       Y
+Android FF:     Y       Y       Y       Y
+
+
+
 Behavioural changes from default
 =================================
 

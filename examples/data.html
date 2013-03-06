@@ -3,6 +3,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Raw phone data</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -17,17 +18,29 @@
 			// gets the gyro position
 			var tilt = deviceOrientation(e);
 		
-            $("#xval").html(tilt.gamma);
-            $("#yval").html(tilt.beta);
-            $("#zval").html(tilt.alpha);
+            $("#xval").text(tilt.gamma);
+            $("#yval").text(tilt.beta);
+            $("#zval").text(tilt.alpha);
+
+            $("#abs").text(tilt.absolute);
         }
         
         function update_accel(e) {
         	// gets the accelerometer values
         	var a = deviceMotion(e);
-            $("#xaccel").html(a.accelerationIncludingGravity.x);
-            $("#yaccel").html(a.accelerationIncludingGravity.y);
-            $("#zaccel").html(a.accelerationIncludingGravity.z);
+            $("#xaccelg").text(a.accelerationIncludingGravity.x);
+            $("#yaccelg").text(a.accelerationIncludingGravity.y);
+            $("#zaccelg").text(a.accelerationIncludingGravity.z);
+
+            $("#xaccel").text(a.acceleration.x);
+            $("#yaccel").text(a.acceleration.y);
+            $("#zaccel").text(a.acceleration.z);
+            
+            $("#arot").text(a.rotationRate.alpha);
+            $("#brot").text(a.rotationRate.beta);
+            $("#grot").text(a.rotationRate.gamma);
+
+            $("#interval").text(a.interval);
         }  
     </script>
 </head>
@@ -35,12 +48,23 @@
     <div id="main">
     <h1>Device data</h1>    
         <h2>Accelerometer Including Gravity</h2>
+        <p>X: <span id="xaccelg"></span></p>
+        <p>Y: <span id="yaccelg"></span></p>
+        <p>Z: <span id="zaccelg"></span></p>
+        <h2>Accelerometer not including Gravity</h2>
         <p>X: <span id="xaccel"></span></p>
         <p>Y: <span id="yaccel"></span></p>
         <p>Z: <span id="zaccel"></span></p>
+        <h2>Rotation Rate (from Accelerometer)</h2>
+        <p>Alpha (compass): <span id="arot"></span></p>
+        <p>Beta: <span id="brot"></span></p>
+        <p>Gamma: <span id="grot"></span></p>
+        <h2>Interval</h2>
+        <p>Value: <span id="interval"></span></p>
         <h2>Gyro (Tilt)</h2>
         <p>Gamma: <span id="xval"></span></p>
         <p>Beta: <span id="yval"></span></p>
         <p>Alpha (compass): <span id="zval"></span></p>
+        <p>Abs: <span id="abs"></span></p>
     </div>
 </body>
