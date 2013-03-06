@@ -99,46 +99,66 @@ Z is perpendicular to the ground plane and is positive towards the sky (negative
 
 Rotation should be expressed using the right hand rule, thus positive values with rotation clockwise around the axis of rotation when looking down the axis.
 
-Direction faced to get a 0 position. The spec is unclear what the defaults should be and so as a result many different choices are taken by the vendors. This causes confusion. The below tables show the results of each axis, including the ranges expressed
+The tables below express where the zero point is for a given axis, what the values are for it's rotational range, whether it obeys the Right Hand Rule* and any further notes.
+
+* RHR = Right Hand Rule. That positive values increase when rotating clockwise around the axis of rotation when looking along the axis' postive trajectory. This causes confusion because for a compass it looks like you're going backwards but that's because you're looking along the -ive trajectory of the Z axis.
+
+With respect to RHR, Y=Yes, N=No and P=Partial which means it follows some of the RHR guidance
 
 Alpha (compass/ yaw)
 ....................
 
+The spec is unclear what the defaults should be and so as a result many different choices are taken by the vendors. This causes confusion and the spec is not clear about what 0 degrees should actually be. From the example it is implied that North is 0 degrees because West is given as +90 degrees (which is correct under the RHR). 
+
+The range is tested by holding the device level in the horizontal plane, orienting it to the zero point then turning it through 360 degrees, observing its range and direction.
+
                 Zero point      RHR*    Range
+Reference:      North (0)       Y       [0, 360]
 iOS Chome:      East (90)       Y       [0, 360]
 iOS Safari:     East (90)       Y       [0, 360]
-Android Chrome: North (0)       Y       [0, 360]
-Android:        West (270)      Y       [0, 360]
-Android FF:     North (0)       N       [0, 360]
 Blackberry:     South (180)     N       [0, 360]
+Android ICS
+Chrome:         North (0)       Y       [0, 360]
+Stock:          West (270)      Y       [0, 360]
+Firefox:        North (0)       N       [0, 360]
 
 Beta (Pitch)
 ............
+
+The spec defines zero point as being flat in the horizontal plane. All browsers now support this model. Note that there are some issues in the ranging of the values.
+
+The range is tested by holding the device level in the horizontal plan and confirming the zero point. The device is then rotated around the X axis through 90 degrees (screen faces observer), then through the next 90 degrees (screen face down), then the remaining 180 degrees completing the bottom portion of the rotation.
 
                 Zero point      RHR*    Range           Notes
 Reference       H. Plane        Y       [0, -180|180]
 iOS Chome:      H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 iOS Safari:     H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-Android Chrome: H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-Android:        H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-Android FF:     H. Plane        N       [0, 180|-180]   Back to front[2]
 Backberry:      H. Plane        Y       [0, -180|180]   Per spec
+Android ICS
+Chrome:         H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
+Stock           H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
+Firefox         H. Plane        N       [0, 180|-180]   Back to front[2]
 
-[1] Under iOS the rotation goes the right direction from the horizontal plane however once it hits the maximal or minimal point at (90 | -90 degrees) it simply starts to decrease again, rather than provide the full rotation.
+[1] Under iOS as well as the stock Android browser and Chrome for Android, the rotation goes the right direction from the horizontal plane however once it hits the maximal or minimal point at (90 | -90 degrees) it simply starts to decrease again, rather than provide the full rotation.
 
 [2] In FF on android the rotation is back to front but it does go through the full range to 180 degrees. However under firefox the value is -90 when the top is point upwards and 90 when the top of the device points downwards. This is a reversing of the RHR.
 
 Gamma (Roll)
 .............
 
+The spec defines the zero point as being level in the horizontal place. Again there are some issues with ranges and some implied issues with how the W3C have defined this as they are assuming only 90 degrees of rotation around the Y axis is relevant.
+
+The range is tested by holding the device level in the horizontal plane and confirming a zero point. The device it then rotated around the Y axis 90 degrees clockwise (screen faces right) then again (screen faces down) and then through the other 180 degrees back to the origin.
+
                 Zero point      RHR*    Range           Notes
 Reference       H. Plane        Y       [0, 90|-90]     [1]
 iOS Chome:      H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
 iOS Safari:     H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
-Android Chrome: H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
-Android:        H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
-Android FF:     H. Plane        N       [0, -90|90]     Range back to front [4]
 Blackberry:     H. Plane        Y       [0, 90|-90]     Per Spec
+Android ICS
+Chrome:         H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Stock:          H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Firefox         H. Plane        N       [0, -90|90]     Range back to front [4]
 
 [1] This is poor definition by the W3C as it implies rotation only happens to 90 degrees from the horizontal plane, thus causing an issue when you go under this.
 
@@ -148,14 +168,10 @@ Blackberry:     H. Plane        Y       [0, 90|-90]     Per Spec
 
 [4] Firefox reverses its range the same way as it does on Beta. The range is correct however rotation clockwise results in a -ive number and the reverse.
 
-* RHR = Right Hand Rule. That positive values increase when rotating clockwise around the axis of rotation when looking along the axis' postive trajectory. This causes confusion because for a compass it looks like you're going backwards but that's because you're looking along the -ive trajectory of the Z axis.
-
-With respect to RHR, Y=Yes, N=No and P=Partial which means it follow some of the RHR guidance
-
 Device Motion
 -------------
 
-Support for motion properties:
+Support for motion properties :
 
                 Acc     AccIG   Rot     Interval
 iOS Chome:      N       Y       N       N
@@ -167,33 +183,23 @@ Blackberry      Y       N       N       Y[1]
 
 [1] Weirdly BB uses a variable interval instead of a constant which is the guidance from the spec. This implies the sampling is done in software rather than hardware off the accelerometer chip?
 
-
 Behavioural changes from default
 =================================
 
-The following mods have been made to bring the devices into "line" with the
-spec above.
+NB: This section needs considerable refactoring based on the updated spec and the way the vendors have implemented it. For the moment there are no behavioural changes from the default.
+
+The following mods have been made to bring the devices into "line" with the spec.
 
 Safari:
 
 * Early iOS devices have no gyro - as such any call to deviceOrientation will return the right object but with data as null.
-* I think Safari provides the wrong values:
-    * Alpha is as a val [-180, 180] (should be [0-360])
-    * Gamma [-180, 180] (should be [-90, 90])
-    * Beta [ -90, 90] (should be [-180, 180])
 
 Firefox:
 
-* accelerometer values are given as a range [-1, 1] - these look to be as a
-percentage of gravity. Thus they are multiplied by +9.81 (gravity acceleration) 
-and they seem to normalise well with the iPhone.
 
 Roadmap
 =======
 
-* Include the rotation information
-* Get tests done for iOS devices which I don't presently have access to.
-* Try out a honeycomb device to see if Mobile Chrome supports the API
 * Write handler to detect whether eventlisteners should be bound or not based on capabilities.
 
 
