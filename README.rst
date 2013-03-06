@@ -61,8 +61,24 @@ Known Issues
 =============
 
 * iOS devices prior to the iPhone 4 do not have a gyro and as a result don't provide that data back.
-* Mobile chrome does not support any of these events so is unsupported.
+* Mobile chrome has only partial support on Android (orientation only). There is an outstanding ticket to get motion included though (https://code.google.com/p/chromium/issues/detail?id=135804)
 * rotation rate presently not implemented given lack of visibility on this method from the browsers
+
+Currently known to work on
+==========================
+
+Android
+-------
+
+* Firefox - Gingerbread (2.3)+ devices (Motion and Orientation)
+* Chrome for Android - Gingerbread (2.3)+ Orientation only (no motion)
+* Android Browser - ICS (4.0)+ (Motion and Orientation)
+
+iPhone / iPad
+-------------
+
+* Chrome for iOS - iOS6+ Motion and Orientation
+* Mobile Safari  - iOS4+ Motion and Orientation
 
 
 Behavioural changes from default
