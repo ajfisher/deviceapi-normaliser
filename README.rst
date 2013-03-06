@@ -13,7 +13,7 @@ as per this document: http://dev.w3.org/geo/api/spec-source-orientation
 Presently the only devices that reliably use the device api events are 
 mobile safari on iOS4+ and Firefox 6 (Fennec) on Android.
 
-Mobile chrome does not currently support the device api.
+Mobile chrome does not currently support the devicemotion api.
 
 This library is licenced under a BSD style licence as per to the licence document included in the repo.
 
@@ -62,7 +62,7 @@ Known Issues
 
 * iOS devices prior to the iPhone 4 do not have a gyro and as a result don't provide that data back.
 * Mobile chrome has only partial support on Android (orientation only). There is an outstanding ticket to get motion included though (https://code.google.com/p/chromium/issues/detail?id=135804)
-* rotation rate presently not implemented given lack of visibility on this method from the browsers
+* rotationRate is partly supported but seemingly not entirely consistent for those devices that support it.
 
 Currently known to work on
 ==========================
@@ -70,9 +70,9 @@ Currently known to work on
 Android
 -------
 
-* Firefox - Gingerbread (2.3)+ devices (Motion and Orientation)
-* Chrome for Android - Gingerbread (2.3)+ Orientation only (no motion)
-* Android Browser - ICS (4.0)+ (Motion and Orientation)
+* Firefox - Gingerbread (2.3)+ devices (Motion and Orientation) NB: Firefox is not available on 2.3 anymore for new installs
+* Chrome for Android - ICS (4.0)+ Orientation only (no motion)
+* Android Browser - ICS (4.0)+ (Orientation and some motion)
 
 iPhone / iPad
 -------------
@@ -80,6 +80,10 @@ iPhone / iPad
 * Chrome for iOS - iOS6+ Motion and Orientation
 * Mobile Safari  - iOS4+ Motion and Orientation
 
+BlackBerry 10
+-------------
+
+* Tested on the Blackberry Playbook stock browser - Motion and Orientation
 
 Current Tests of Spec compliance
 =================================
@@ -106,6 +110,7 @@ iOS Safari:     East (90)       Y       [0, 360]
 Android Chrome: North (0)       Y       [0, 360]
 Android:        West (270)      Y       [0, 360]
 Android FF:     North (0)       N       [0, 360]
+Blackberry:     South (180)     N       [0, 360]
 
 Beta (Pitch)
 ............
@@ -117,6 +122,7 @@ iOS Safari:     H. Plane        Y       [-90, 90]       Full range of rotation n
 Android Chrome: H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Android:        H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Android FF:     H. Plane        N       [0, 180|-180]   Back to front[2]
+Backberry:      H. Plane        Y       [0, -180|180]   Per spec
 
 [1] Under iOS the rotation goes the right direction from the horizontal plane however once it hits the maximal or minimal point at (90 | -90 degrees) it simply starts to decrease again, rather than provide the full rotation.
 
@@ -132,6 +138,7 @@ iOS Safari:     H. Plane        Y       [0, 180|-180]   Full range of rotation n
 Android Chrome: H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Android:        H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Android FF:     H. Plane        N       [0, -90|90]     Range back to front [4]
+Blackberry:     H. Plane        Y       [0, 90|-90]     Per Spec
 
 [1] This is poor definition by the W3C as it implies rotation only happens to 90 degrees from the horizontal plane, thus causing an issue when you go under this.
 
@@ -156,7 +163,9 @@ iOS Safari:     Y       Y       Y       Y
 Android Chrome: N       N       N       N
 Android:        N       Y       N       Y
 Android FF:     Y       Y       Y       Y
+Blackberry      Y       N       N       Y[1]
 
+[1] Weirdly BB uses a variable interval instead of a constant which is the guidance from the spec. This implies the sampling is done in software rather than hardware off the accelerometer chip?
 
 
 Behavioural changes from default
