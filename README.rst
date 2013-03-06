@@ -172,14 +172,16 @@ Device Motion
 -------------
 
 Support for motion properties :
-
+==============  ===     =====   ===     ========
                 Acc     AccIG   Rot     Interval
+==============  ===     =====   ===     ========
 iOS Chome:      N       Y       N       N
 iOS Safari:     Y       Y       Y       Y
 Android Chrome: N       N       N       N
 Android:        N       Y       N       Y
 Android FF:     Y       Y       Y       Y
 Blackberry      Y       N       N       Y[1]
+==============  ===     =====   ===     ========
 
 [1] Weirdly BB uses a variable interval instead of a constant which is the guidance from the spec. This implies the sampling is done in software rather than hardware off the accelerometer chip?
 
