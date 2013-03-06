@@ -14,9 +14,7 @@
 var accel_multi = 1; // used to normalise the accel values if firefox
 
 $(function() {
-    if ($.browser.mozilla) {
-        accel_multi = 9.81;
-    }
+    ;
 });
 
 function deviceMotion(e) {
