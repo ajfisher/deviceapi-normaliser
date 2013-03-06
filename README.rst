@@ -112,7 +112,9 @@ The spec is unclear what the defaults should be and so as a result many differen
 
 The range is tested by holding the device level in the horizontal plane, orienting it to the zero point then turning it through 360 degrees, observing its range and direction.
 
-                Zero point      RHR*    Range
+===========     ==========      ====    ========
+\               Zero point      RHR*    Range
+===========     ==========      ====    ========
 Reference:      North (0)       Y       [0, 360]
 iOS Chome:      East (90)       Y       [0, 360]
 iOS Safari:     East (90)       Y       [0, 360]
@@ -121,6 +123,7 @@ Android ICS
 Chrome:         North (0)       Y       [0, 360]
 Stock:          West (270)      Y       [0, 360]
 Firefox:        North (0)       N       [0, 360]
+===========     ==========      ====    ========
 
 Beta (Pitch)
 ............
@@ -129,7 +132,9 @@ The spec defines zero point as being flat in the horizontal plane. All browsers 
 
 The range is tested by holding the device level in the horizontal plan and confirming the zero point. The device is then rotated around the X axis through 90 degrees (screen faces observer), then through the next 90 degrees (screen face down), then the remaining 180 degrees completing the bottom portion of the rotation.
 
-                Zero point      RHR*    Range           Notes
+===========     ==========      ====    =============   ========================================
+\               Zero point      RHR*    Range           Notes
+===========     ==========      ====    =============   ========================================
 Reference       H. Plane        Y       [0, -180|180]
 iOS Chome:      H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 iOS Safari:     H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
@@ -138,6 +143,7 @@ Android ICS
 Chrome:         H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Stock           H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Firefox         H. Plane        N       [0, 180|-180]   Back to front[2]
+===========     ==========      ====    =============   ========================================
 
 [1] Under iOS as well as the stock Android browser and Chrome for Android, the rotation goes the right direction from the horizontal plane however once it hits the maximal or minimal point at (90 | -90 degrees) it simply starts to decrease again, rather than provide the full rotation.
 
@@ -150,7 +156,9 @@ The spec defines the zero point as being level in the horizontal place. Again th
 
 The range is tested by holding the device level in the horizontal plane and confirming a zero point. The device it then rotated around the Y axis 90 degrees clockwise (screen faces right) then again (screen faces down) and then through the other 180 degrees back to the origin.
 
-                Zero point      RHR*    Range           Notes
+===========     ==========      ====    =============   ========================================
+\               Zero point      RHR*    Range           Notes
+===========     ==========      ====    =============   ========================================
 Reference       H. Plane        Y       [0, 90|-90]     [1]
 iOS Chome:      H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
 iOS Safari:     H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
@@ -159,6 +167,7 @@ Android ICS
 Chrome:         H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Stock:          H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Firefox         H. Plane        N       [0, -90|90]     Range back to front [4]
+===========     ==========      ====    =============   ========================================
 
 [1] This is poor definition by the W3C as it implies rotation only happens to 90 degrees from the horizontal plane, thus causing an issue when you go under this.
 
