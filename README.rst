@@ -95,18 +95,55 @@ Z is perpendicular to the ground plane and is positive towards the sky (negative
 
 Rotation should be expressed using the right hand rule, thus positive values with rotation clockwise around the axis of rotation when looking down the axis.
 
-Direction faced to get a 0 position
+Direction faced to get a 0 position. The spec is unclear what the defaults should be and so as a result many different choices are taken by the vendors. This causes confusion. The below tables show the results of each axis, including the ranges expressed
 
-                Alpha (compass) 
-Should be:      
-iOS Chome:      East (90)
-iOS Safari:     East (90)
-Android Chrome: North (0)
-Android:        West (270)
-Android FF:     North (0)
+Alpha (compass/ yaw)
+....................
 
-Range of values that can be expressed
+                Zero point      RHR*    Range
+iOS Chome:      East (90)       Y       [0, 360]
+iOS Safari:     East (90)       Y       [0, 360]
+Android Chrome: North (0)       Y       [0, 360]
+Android:        West (270)      Y       [0, 360]
+Android FF:     North (0)       N       [0, 360]
 
+Beta (Pitch)
+............
+
+                Zero point      RHR*    Range           Notes
+Reference       H. Plane        Y       [0, -180|180]
+iOS Chome:      H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
+iOS Safari:     H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
+Android Chrome: H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
+Android:        H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
+Android FF:     H. Plane        N       [0, 180|-180]   Back to front[2]
+
+[1] Under iOS the rotation goes the right direction from the horizontal plane however once it hits the maximal or minimal point at (90 | -90 degrees) it simply starts to decrease again, rather than provide the full rotation.
+
+[2] In FF on android the rotation is back to front but it does go through the full range to 180 degrees. However under firefox the value is -90 when the top is point upwards and 90 when the top of the device points downwards. This is a reversing of the RHR.
+
+Gamma (Roll)
+.............
+
+                Zero point      RHR*    Range           Notes
+Reference       H. Plane        Y       [0, 90|-90]     [1]
+iOS Chome:      H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
+iOS Safari:     H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
+Android Chrome: H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Android:        H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Android FF:     H. Plane        N       [0, -90|90]     Range back to front [4]
+
+[1] This is poor definition by the W3C as it implies rotation only happens to 90 degrees from the horizontal plane, thus causing an issue when you go under this.
+
+[2] Under iOS rotation starts from the horizontal plan with the screen facing up as the zero point. Rotating around the Y axis so that the screen is facing down will result in a value of 180 or -180. If the rotation occurs clockwise the values increase through the +ive range, if the rotation is anti-clockwise then the values increase through the -ive range. Thus resting the R edge (L edge upwards) the value is 90, the reverse (resting on the L edge, R edge up) means the value is -90.
+
+[3] The Chrome for Android and stock android browsers create the right rotational vales for the +-90 range however the gap after 90 on the clockwise rotation is filled with increasing +ive values until it reaches the -90 value. This provides an opportunity to know exactly how far the device is rotated around the Y axis but can't be replicated by any of the others.
+
+[4] Firefox reverses its range the same way as it does on Beta. The range is correct however rotation clockwise results in a -ive number and the reverse.
+
+* RHR = Right Hand Rule. That positive values increase when rotating clockwise around the axis of rotation when looking along the axis' postive trajectory. This causes confusion because for a compass it looks like you're going backwards but that's because you're looking along the -ive trajectory of the Z axis.
+
+With respect to RHR, Y=Yes, N=No and P=Partial which means it follow some of the RHR guidance
 
 Device Motion
 -------------
