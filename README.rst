@@ -155,18 +155,18 @@ confirming the zero point. The device is then rotated around the X axis through
 face down), then the remaining 180 degrees completing the bottom portion of 
 the rotation.
 
-===========     ==========      ====    =============   ========================================
+===========     ===========     ====    =============   ========================================
 \               Zero point      RHR*    Range           Notes
-===========     ==========      ====    =============   ========================================
-Reference       H. Plane        Y       [0, -180|180]
-iOS Chome:      H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-iOS Safari:     H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-Backberry:      H. Plane        Y       [0, -180|180]   Per spec
+===========     ===========     ====    =============   ========================================
+Reference       Horiz Plane     Y       [0, -180|180]
+iOS Chome:      Horiz Plane     Y       [-90, 90]       Full range of rotation not supported.[1]
+iOS Safari:     Horiz Plane     Y       [-90, 90]       Full range of rotation not supported.[1]
+Backberry:      Horiz Plane     Y       [0, -180|180]   Per spec
 Android ICS
-Chrome:         H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-Stock           H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-Firefox         H. Plane        N       [0, 180|-180]   Back to front[2]
-===========     ==========      ====    =============   ========================================
+Chrome:         Horiz Plane     Y       [-90, 90]       Full range of rotation not supported.[1]
+Stock           Horiz Plane     Y       [-90, 90]       Full range of rotation not supported.[1]
+Firefox         Horiz Plane     N       [0, 180|-180]   Back to front[2]
+===========     ===========     ====    =============   ========================================
 
 [1] Under iOS as well as the stock Android browser and Chrome for Android, 
 the rotation goes the right direction from the horizontal plane however once it 
