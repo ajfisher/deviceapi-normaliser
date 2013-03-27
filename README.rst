@@ -140,7 +140,7 @@ its range and direction.
 Reference:      North (0)       Y       [0, 360]
 iOS Chome:      East (90)       Y       [0, 360]
 iOS Safari:     East (90)       Y       [0, 360]
-Blackberry:     South(180)     N       [0, 360]
+Blackberry:     South(180)      N       [0, 360]
 Android ICS
 Chrome:         North (0)       Y       [0, 360]
 Stock:          West (270)      Y       [0, 360]
