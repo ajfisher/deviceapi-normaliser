@@ -78,6 +78,10 @@ Android
   not available on 2.3 anymore for new installs
 * Chrome for Android - ICS (4.0)+ Orientation only (no motion)
 * Android Browser - ICS (4.0)+ (Orientation and some motion)
+* Chrome for Android - JB Orientation only (no motion)
+* Firefox - JB Orientation and Motion.
+* Note that the "stock" Android browser no longer exists as of JellyBean in
+  favour of Chrome.
 
 iPhone / iPad
 -------------
@@ -140,6 +144,9 @@ Android ICS
 Chrome:         North (0)       Y       [0, 360]
 Stock:          West (270)      Y       [0, 360]
 Firefox:        North (0)       N       [0, 360]
+Android JB
+Chrome:         North(0)        Y       [0, 360]
+Firefox         North (0)       N       [0, 360]       
 ===========     ==========      ====    ========
 
 Beta (Pitch)
@@ -165,6 +172,9 @@ Backberry:      H. Plane        Y       [0, -180|180]   Per spec
 Android ICS
 Chrome:         H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Stock           H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
+Firefox         H. Plane        N       [0, 180|-180]   Back to front[2]
+Android JB
+Chrome:         H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Firefox         H. Plane        N       [0, 180|-180]   Back to front[2]
 ===========     ==========      ====    =============   ========================================
 
@@ -201,6 +211,9 @@ Blackberry:     H. Plane        Y       [0, 90|-90]     Per Spec
 Android ICS
 Chrome:         H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Stock:          H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Firefox         H. Plane        N       [0, -90|90]     Range back to front [4]
+Android JB
+Chrome:         H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Firefox         H. Plane        N       [0, -90|90]     Range back to front [4]
 ===========     ==========      ====    =============   ========================================
 
@@ -239,7 +252,7 @@ Support for motion properties:
 +----------------+-------+-------+-----+-----------+
 | Android Chrome:| N     | N     | N   | N         |
 +----------------+-------+-------+-----+-----------+
-| Android:       | N     | Y     | N   | Y         |
+| Android Stock: | N     | Y     | N   | Y         |
 +----------------+-------+-------+-----+-----------+
 | Android FF:    | Y     | Y     | Y   | Y         |
 +----------------+-------+-------+-----+-----------+

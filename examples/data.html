@@ -15,9 +15,9 @@
         window.addEventListener("devicemotion", update_accel, false);
 
 		function update_gyro(e) {
-			// gets the gyro position
-			var tilt = deviceOrientation(e);
-		
+            // gets the gyro position
+            var tilt = deviceOrientation(e);
+        
             $("#xval").text(tilt.gamma);
             $("#yval").text(tilt.beta);
             $("#zval").text(tilt.alpha);
