@@ -210,13 +210,13 @@ iOS Chome:      Horiz Plane      Y       [0, 180|-180]   Full range of rotation 
 iOS Safari:     Horiz Plane      Y       [0, 180|-180]   Full range of rotation not supported[2]
 Blackberry:     Horiz Plane      Y       [0, 90|-90]     Per Spec
 Android ICS
-Chrome:         H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
-Stock:          H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
-Firefox         H. Plane        N       [0, -90|90]     Range back to front [4]
+Chrome:         H. Plane         Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Stock:          H. Plane         Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Firefox         H. Plane         N       [0, -90|90]     Range back to front [4]
 Android JB
-Chrome:         H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
-Firefox         H. Plane        N       [0, -90|90]     Range back to front [4]
-===========     ==========      ====    =============   ========================================
+Chrome:         H. Plane         Y       [0, 270|-90]    Odd range to cope with the gaps[3]
+Firefox         H. Plane         N       [0, -90|90]     Range back to front [4]
+===========     ==========       ====    =============   ========================================
 
 [1] This is poor definition by the W3C as it implies rotation only happens to 
 90 degrees from the horizontal plane, thus causing an issue when you go under 
