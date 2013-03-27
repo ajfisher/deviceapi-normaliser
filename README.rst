@@ -263,6 +263,67 @@ Support for motion properties:
 guidance from the spec. This implies the sampling is done in software rather 
 than hardware off the accelerometer chip?
 
+Event handling detection
+========================
+
+Given the large range of results and the incomplete handling of motion versus
+orientation across devices. Understanding the differences between the devices
+is critical in order to have similar performance in a multi-device context 
+(eg for games). The following is some information about feature detection and
+how different browsers handle it.
+
+Device Orientation
+------------------
+
+Simply checking for if(window.DeviceOrientationEvent) yields the following:
+
+================    =======     ==========
+Browser             Result      Notes
+================    =======     ==========
+Chrome (Desktop)    True        Failure[1]
+Chrome (JB/ICS)     False       Failure[2]
+Chrome (iOS)        True        
+Firefox (JB/ICS)    True
+Safari (iOS)        True
+Blackberry          False       Failure[3]
+Android (stock)     False       Failure[4]
+================    =======     ==========
+
+[1] Chrome on desktop provides a false positive with this event suggesting it's
+available in all versions of desktop chrome but reports nothing unless a tilt
+sensor is available to the computer
+
+[2] Chrome on Android provides a false negative, suggesting it doesn't report
+event correctly even though it can actually fire that event.
+
+[3] Blackberry stock browser reports a false positive when it can in fact do
+orientation. Based on testing though this may be because the orientation data
+looks to be derived so this may be hooked in a different way.
+
+[4] The stock android browser in ICS supports the orientation events however it
+falsely declares it does not on event detection.
+
+Device Motion
+-------------
+
+Simply checking for if(window.DeviceMotionEvent) yields the following:
+
+================    =======     ==========
+Browser             Result      Notes
+================    =======     ==========
+Chrome (Desktop)    False       
+Chrome (JB/ICS)     False       
+Chrome (iOS)        True        
+Firefox (JB/ICS)    True
+Safari (iOS)        True
+Blackberry          True
+Android Stock       True
+================    =======     ==========
+
+The results from motion are much more consistent with reality, with no false
+positives and actual detection occurring correctly in all instances.
+
+
 Behavioural changes from default
 =================================
 

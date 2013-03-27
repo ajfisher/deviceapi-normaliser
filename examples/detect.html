@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Event Detection</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script>
+        var orientation = false;
+        var motion = false;
+
+        if (window.DeviceOrientationEvent) {
+            orientation = true;
+        }
+
+        if (window.DeviceMotionEvent) {
+            motion = true;
+        }
+
+        $(document).ready(function (){
+            if (orientation) {
+                $("#orientation").text("Yes");
+            } else {
+                $("#orientation").text("Nope");
+            }
+
+            if (motion) {
+                $("#motion").text("Yes");
+            } else {
+                $("#motion").text("Nope");
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="main">
+        <h1>Attempt to detect motion and events</h1>
+        <h2>Can I detect an orientation event</h2>
+        <p id="orientation">No</p>
+
+        <h2>Can I detect a motion event</h2>
+        <p id="motion">No</p>
+    </div>
+</body>
+</html>
