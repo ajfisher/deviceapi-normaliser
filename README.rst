@@ -324,6 +324,63 @@ Android Stock       True
 The results from motion are much more consistent with reality, with no false
 positives and actual detection occurring correctly in all instances.
 
+Feature detection and correction
+================================
+
+Using the various ways browsers report their capability given above as well as a
+very small dose of browser type detection or UA checks (it's understood this is
+not ideal but it's skewed towards extremely loose detection checks and there's
+no other alternative) it is possible to determine what device is being used and
+as a result what modifications are required to bring the values from the events
+back on spec.
+
+It should be noted that this really only applies to the orientation events as
+the motion spec is either correct or not implemented at all.
+
+The table below summarises the event feature detection, decisions about what
+browser it's likely to be or whether further detection is actually required.
+
++--------------+-----------+-----------+-------------------+-------------------------------+
+| Orientation  | Motion    | OS        | Browser           | Further detection             |
++==============+===========+===========+===================+===============================+
+| True         | True      | iOS       | Safari / Chrome   | $.browser.webkit              |
+|              |           +-----------+-------------------+-------------------------------+
+|              |           | Android   | Firefox           | ! $.browser.webkit            |
++--------------+-----------+-----------+-------------------+-------------------------------+
+| True         | False     | Desktop   | Webkit            | N/A                           |
++--------------+-----------+-----------+-------------------+-------------------------------+
+| False        | True      | Android   | Stock             | userAgent.match(/Android/i)   |
+|              |           +-----------+-------------------+-------------------------------+
+|              |           | Blackberry| Stock             | ! userAgent.match(/Android/i) |
++--------------+-----------+-----------+-------------------+-------------------------------+
+| False        | False     | Android   | Chrome            | N/A                           |
++--------------+-----------+-----------+-------------------+-------------------------------+
+
+Correction:
+-----------
+
+As can be seen in the table below, all of the major browsers in play require
+a degree of change in order to bring them back to the standard for orientation.
+
+=============     =================================
+Browser / OS      Correction
+=============     =================================
+iOS Webkit        Alpha: (-90 degrees)
+                  Beta: (correct range)
+                  Gamma: (Limit range)  
+Android:
+Firefox           Alpha, Beta, Gamma (Reverse RHR)
+Stock             Alpha None
+                  Beta (Correct range)
+                  Gamma (Limit Range)
+Chrome            Alpha: None
+                  Beta: (Correct range)
+                  Gamma: (Limit Range)
+Blackberry        Alpha: (-180 degrees)
+                  Beta: None
+                  Gamma: None
+=============     =================================
+
 
 Behavioural changes from default
 =================================
