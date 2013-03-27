@@ -282,27 +282,21 @@ Simply checking for if(window.DeviceOrientationEvent) yields the following:
 Browser             Result      Notes
 ================    =======     ==========
 Chrome (Desktop)    True        Failure[1]
-Chrome (JB/ICS)     False       Failure[2]
+Chrome (JB/ICS)     True        [2]
 Chrome (iOS)        True        
 Firefox (JB/ICS)    True
 Safari (iOS)        True
-Blackberry          False       Failure[3]
-Android (stock)     False       Failure[4]
+Blackberry          True        [2]
+Android (stock)     True        [1]
 ================    =======     ==========
 
 [1] Chrome on desktop provides a false positive with this event suggesting it's
 available in all versions of desktop chrome but reports nothing unless a tilt
 sensor is available to the computer
 
-[2] Chrome on Android provides a false negative, suggesting it doesn't report
-event correctly even though it can actually fire that event.
-
-[3] Blackberry stock browser reports a false positive when it can in fact do
-orientation. Based on testing though this may be because the orientation data
-looks to be derived so this may be hooked in a different way.
-
-[4] The stock android browser in ICS supports the orientation events however it
-falsely declares it does not on event detection.
+[2] Chrome on Android, the ICS stock Android browser and the BB stock browser
+all detect correctly but only if a warm up time for the gyro is provided. If 
+this is detected with immediate execution it will fail with false results.
 
 Device Motion
 -------------
@@ -340,21 +334,21 @@ the motion spec is either correct or not implemented at all.
 The table below summarises the event feature detection, decisions about what
 browser it's likely to be or whether further detection is actually required.
 
-+--------------+-----------+-----------+-------------------+-------------------------------+
-| Orientation  | Motion    | OS        | Browser           | Further detection             |
-+==============+===========+===========+===================+===============================+
-| True         | True      | iOS       | Safari / Chrome   | $.browser.webkit              |
-|              |           +-----------+-------------------+-------------------------------+
-|              |           | Android   | Firefox           | ! $.browser.webkit            |
-+--------------+-----------+-----------+-------------------+-------------------------------+
-| True         | False     | Desktop   | Webkit            | N/A                           |
-+--------------+-----------+-----------+-------------------+-------------------------------+
-| False        | True      | Android   | Stock             | userAgent.match(/Android/i)   |
-|              |           +-----------+-------------------+-------------------------------+
-|              |           | Blackberry| Stock             | ! userAgent.match(/Android/i) |
-+--------------+-----------+-----------+-------------------+-------------------------------+
-| False        | False     | Android   | Chrome            | N/A                           |
-+--------------+-----------+-----------+-------------------+-------------------------------+
++--------------+-----------+-----------+-------------------+------------------------------------+
+| Orientation  | Motion    | OS        | Browser           | Further detection                  |
++==============+===========+===========+===================+====================================+
+| True         | True      | iOS       | Safari / Chrome   | $.browser.webkit && !Android       |
+|              |           +-----------+-------------------+------------------------------------+
+|              |           | Android   | Firefox           | ! $.browser.webkit                 |
+|              |           |           +-------------------+------------------------------------+
+|              |           |           | Stock             | userAgent.match(/Android/i)        |
+|              |           +-----------+-------------------+------------------------------------+
+|              |           | Blackberry| Stock             | userAgent.match(/RIM|Blackberry/i) |
++--------------+-----------+-----------+-------------------+------------------------------------+
+| True         | False     | Desktop   | Webkit            | N/A                                |
+|              |           +-----------+-------------------+------------------------------------+
+|              |           | Android   | Chrome            | userAgent.match(/Android/i)        |
++--------------+-----------+-----------+-------------------+------------------------------------+
 
 Correction:
 -----------

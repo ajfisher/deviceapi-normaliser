@@ -4,58 +4,21 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Event Detection</title>
+    <title>Event Feature Detection</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src=../deviceapi-normaliser.js></script>
     <script>
-        var orientation = false;
-        var motion = false;
-
-        var os = null;
-        var browser = null;
-
-        // first pass.
-        if (window.DeviceOrientationEvent) {
-            orientation = true;
-        }
-
-        if (window.DeviceMotionEvent) {
-            motion = true;
-        }
-
-        if (orientation && motion) {
-            // I'm iOS and either safari or Chrome or I'm firefox on Android
-            if ($.browser.webkit) {
-                // this is definitive
-                os = "iOS";
-                browser = "Chrome or Safari";
-            } else {
-                // this is definitive
-                os = "Android";
-                browser = "Firefox";
-            }
-        } else if (!orientation && !motion) {
-            // this is definitive
-            os = "Android";
-            browser = "Chrome";
-        } else if (!orientation && motion) {
-            browser = "Stock";
-            // no choice but to do UA check here. Check for Android as its
-            // more common.
-            var ua = navigator.userAgent;
-            var android = ua.match(/Android/i);
-            if (android) {
-                os = "Android";
-            } else {
-                // assume it's blackberry
-                os = "Blackberry";
-            }
-        } else if (orientation && !motion) {
-            os = "Desktop";
-            browser = "Webkit";
-        }
 
         $(document).ready(function (){
+            mo.init();
+
+            var orientation = mo.orientation;
+            var motion = mo.motion;
+            var browser = mo._browser;
+            var os = mo._os;
+            var ua = mo._ua;
+
             if (orientation) {
                 $("#orientation").text("Yes");
             } else {
@@ -70,6 +33,7 @@
 
             $("#browser").text(browser);
             $("#os").text(os);
+            $("#ua").text(ua);
         });
     </script>
 </head>
@@ -83,6 +47,7 @@
         <p id="motion">No</p>
         <h2>Detection:</h2>
         <p>I am a <span id="browser"></span> browser running on <span id="os"></span> Operating System</p>
+        <p>Reporting: <span id="ua"></span></p>
     </div>
 </body>
 </html>
