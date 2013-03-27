@@ -17,7 +17,7 @@ most wacky due to varying implementations.
 The aim of this library is to attempt to normalise the way the different vendors
 are implementing the API and make it consistent across browsers.
 
-This library is licenced under a BSD style licence as per to the licence document included in the repo.
+This library is licenced under a BSD style licence as per the licence document included in the repo.
 
 All issues etc should be logged at the github repo at http://github.com/ajfisher/deviceapi-normaliser/
 
@@ -25,12 +25,21 @@ Usage
 =====
 
 Assumes - Jquery is installed so access to $.browser object is available. 
-Install the file in your path, include it in a script tag (after jquery) then 
-add your eventlisteners to your page:
 
-window.addEventListener("deviceorientation", [my_orientation_change_handler], false);
+Install the file in your path, include it in a script tag (after jquery).
 
-window.addEventListener("devicemotion", [my_motion_change_handler], false);
+Call the init function for the motion / orientation object:
+
+    mo.init();
+
+This will do the various device detection etc as needed so it can work out what
+corrections are required.
+
+Then add your eventlisteners to your page:
+
+    window.addEventListener("deviceorientation", [my_orientation_change_handler], false);
+
+    window.addEventListener("devicemotion", [my_motion_change_handler], false);
 
 You will need to define your own handlers for the methods given above.
 

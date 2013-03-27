@@ -14,7 +14,7 @@ var mo = {
     _browser:  null,
     _os: null,
     _ua: navigator.userAgent,
-    normalise: false,
+    normalise: false, 
     orientation: false,
     motion: false,
 
@@ -32,7 +32,6 @@ var mo = {
         if (window.DeviceMotionEvent) {
             motion = true;
         }
-
 
         if (orientation && motion) {
             // Could be iOS, Android Stock or FF or blackberry
