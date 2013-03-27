@@ -67,6 +67,7 @@ Known Issues
 * Mobile chrome has only partial support on Android (orientation only). There 
   is an outstanding ticket to get motion included though (https://code.google.com/p/chromium/issues/detail?id=135804)
 * rotationRate is partly supported but seemingly not entirely consistent for those devices that support it.
+* doing Feature detection of the motion and orientation events isn't reliable due to misreporting
 
 Currently known to work on
 ==========================
