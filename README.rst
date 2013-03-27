@@ -177,7 +177,7 @@ Firefox         H. Plane        N       [0, 180|-180]   Back to front[2]
 Android JB
 Chrome:         H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Firefox         H. Plane        N       [0, 180|-180]   Back to front[2]
-===========     ==========      ====    =============   ========================================
+===========     ===========     ====    =============   ========================================
 
 [1] Under iOS as well as the stock Android browser and Chrome for Android, 
 the rotation goes the right direction from the horizontal plane however once it 
@@ -216,7 +216,7 @@ Firefox         H. Plane         N       [0, -90|90]     Range back to front [4]
 Android JB
 Chrome:         H. Plane         Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Firefox         H. Plane         N       [0, -90|90]     Range back to front [4]
-===========     ==========       ====    =============   ========================================
+===========     ===========      ====    =============   ========================================
 
 [1] This is poor definition by the W3C as it implies rotation only happens to 
 90 degrees from the horizontal plane, thus causing an issue when you go under 
