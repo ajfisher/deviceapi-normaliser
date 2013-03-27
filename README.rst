@@ -162,13 +162,13 @@ confirming the zero point. The device is then rotated around the X axis through
 face down), then the remaining 180 degrees completing the bottom portion of 
 the rotation.
 
-===========     ==========      ====    =============   ========================================
+===========     ===========     ====    =============   ========================================
 \               Zero point      RHR*    Range           Notes
-===========     ==========      ====    =============   ========================================
-Reference       H. Plane        Y       [0, -180|180]
-iOS Chome:      H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-iOS Safari:     H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
-Backberry:      H. Plane        Y       [0, -180|180]   Per spec
+===========     ===========     ====    =============   ========================================
+Reference       Horiz Plane     Y       [0, -180|180]
+iOS Chome:      Horiz Plane     Y       [-90, 90]       Full range of rotation not supported.[1]
+iOS Safari:     Horiz Plane     Y       [-90, 90]       Full range of rotation not supported.[1]
+Backberry:      Horiz Plane     Y       [0, -180|180]   Per spec
 Android ICS
 Chrome:         H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
 Stock           H. Plane        Y       [-90, 90]       Full range of rotation not supported.[1]
@@ -201,13 +201,13 @@ confirming a zero point. The device it then rotated around the Y axis 90 degrees
 clockwise (screen faces right) then again (screen faces down) and then through 
 the other 180 degrees back to the origin.
 
-===========     ==========      ====    =============   ========================================
-\               Zero point      RHR*    Range           Notes
-===========     ==========      ====    =============   ========================================
-Reference       H. Plane        Y       [0, 90|-90]     [1]
-iOS Chome:      H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
-iOS Safari:     H. Plane        Y       [0, 180|-180]   Full range of rotation not supported[2]
-Blackberry:     H. Plane        Y       [0, 90|-90]     Per Spec
+===========     ===========      ====    =============   ========================================
+\               Zero point       RHR*    Range           Notes
+===========     ===========      ====    =============   ========================================
+Reference       Horiz Plane      Y       [0, 90|-90]     [1]
+iOS Chome:      Horiz Plane      Y       [0, 180|-180]   Full range of rotation not supported[2]
+iOS Safari:     Horiz Plane      Y       [0, 180|-180]   Full range of rotation not supported[2]
+Blackberry:     Horiz Plane      Y       [0, 90|-90]     Per Spec
 Android ICS
 Chrome:         H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
 Stock:          H. Plane        Y       [0, 270|-90]    Odd range to cope with the gaps[3]
