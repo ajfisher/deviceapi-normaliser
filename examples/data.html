@@ -47,7 +47,6 @@
         var motion_running = false;
         var click_motion = function() {
             // click handler for the accelerometer  function
-            console.log("Clicked motion");
             if (motion_running) {
                 // remove the event listener
                 window.removeEventListener("devicemotion", update_accel);

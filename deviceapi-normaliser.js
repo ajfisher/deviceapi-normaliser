@@ -84,6 +84,8 @@ $(function() {
 
 function deviceMotion(e) {
 
+    
+
 	// we need to normalise the values, safari will just return
 	// as they are but ff will multiply by gravity.
     this.accelerationIncludingGravity = new Object();
