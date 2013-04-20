@@ -21,6 +21,7 @@ var mo = {
     init: function() {
         // Initialises the library to do things like device checking etc.
 
+
         var orientation = false;
         var motion = false
 
@@ -35,7 +36,7 @@ var mo = {
 
         if (orientation && motion) {
             // Could be iOS, Android Stock or FF or blackberry
-            if (! $.browser.webkit) {
+            if (this._ua.match(/Firefox/i) && this._ua.match(/Android/i)) {
                 // this is definitive
                 this._os = "Android";
                 this._browser = "Firefox";
