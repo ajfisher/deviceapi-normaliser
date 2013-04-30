@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>Raw phone data - Accelerometer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="../deviceapi-normaliser.js"></script>
+
+    <script type="text/javascript">
+
+        // these are holder objects we can load the values into
+        var current_orientation = null;
+        var current_motion = null;
+
+        var fps = 60;
+        var refresh_freq = 1000 / fps; //msec to update the screen 
+
+        function update_accel(e) {
+        	// gets the accelerometer values
+        	current_motion  = deviceMotion(e);
+        }  
+
+        var motion_running = false;
+        var click_motion = function() {
+            // click handler for the accelerometer  function
+            if (motion_running) {
+                // remove the event listener
+                window.removeEventListener("devicemotion", update_accel);
+                motion_running = false;
+                $("#motiontoggle span").text("Start");
+            } else {
+                window.addEventListener("devicemotion", update_accel, false);
+                motion_running = true;
+                $("#motiontoggle span").text("Stop");
+            }
+        }
+
+        $(document).ready(function() {
+
+            $("#motiontoggle").bind("click", click_motion);
+
+            value_updater = window.setInterval(function() {
+
+                // update the various elements in the page at a predefined
+                // frequency.
+
+                if (current_motion !== null) {
+                    $("#xaccelg").text(current_motion.accelerationIncludingGravity.x);
+                    $("#yaccelg").text(current_motion.accelerationIncludingGravity.y);
+                    $("#zaccelg").text(current_motion.accelerationIncludingGravity.z);
+
+                    $("#xaccel").text(current_motion.acceleration.x);
+                    $("#yaccel").text(current_motion.acceleration.y);
+                    $("#zaccel").text(current_motion.acceleration.z);
+                    
+                    $("#arot").text(current_motion.rotationRate.alpha);
+                    $("#brot").text(current_motion.rotationRate.beta);
+                    $("#grot").text(current_motion.rotationRate.gamma);
+
+                    $("#interval").text(current_motion.interval);
+                }
+            }, refresh_freq);
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <div id="main">
+        <h1>Device data</h1>
+        <nav>
+            <ul>
+                <li id="motiontoggle"><span>Start</span> Accelerometer Data</li>
+            </ul>
+        </nav>
+        <section id="motion">
+            <h2>Accelerometer Including Gravity</h2>
+            <p>X: <span id="xaccelg"></span></p>
+            <p>Y: <span id="yaccelg"></span></p>
+            <p>Z: <span id="zaccelg"></span></p>
+            <h2>Accelerometer not including Gravity</h2>
+            <p>X: <span id="xaccel"></span></p>
+            <p>Y: <span id="yaccel"></span></p>
+            <p>Z: <span id="zaccel"></span></p>
+            <h2>Rotation Rate (from Accelerometer)</h2>
+            <p>Alpha (compass): <span id="arot"></span></p>
+            <p>Beta: <span id="brot"></span></p>
+            <p>Gamma: <span id="grot"></span></p>
+            <h2>Interval</h2>
+            <p>Value: <span id="interval"></span></p>
+        </section>
+    </div>
+</body>

@@ -1,14 +1,21 @@
 body {
     font-family: helvetica, arial, sans serif;
-    background: rgb(51,51,51);
+    background: rgb(63,63,63);
     color: #fff;
 }
 
 h1, h2 {
-    color: rgb(254,188,111);
+    color: rgb(241,214,58);
 }
 
-section {
+section p {
+    font-weight: normal;
+    color: #fff;
+}
+
+section p span {
+    font-weight: bold;
+    color: rgb(241,214,58);
 }
 
 nav ul {
@@ -21,8 +28,8 @@ nav ul li {
     display: inline-block;
     background: red;
     padding: 0.3em 0.6em;
-    background: rgb(254,188,111);
-    color: #fff;
+    background: rgb(241,214,58);
+    color: rgb(63,63,63);
     font-weight: bold;
 }
 
@@ -33,8 +40,6 @@ nav ul li {
         width: 45%;
         vertical-align: top;
     }
-
-
 }
 
 
