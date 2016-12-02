@@ -1,0 +1,22 @@
+{
+  "name": "deviceapi-normaliser",
+  "version": "1.0.0",
+  "description": "===================== Device API Normaliser =====================",
+  "main": "deviceapi-normaliser.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johncoffee/deviceapi-normaliser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johncoffee/deviceapi-normaliser/issues"
+  },
+  "homepage": "https://github.com/johncoffee/deviceapi-normaliser#readme"
+}
